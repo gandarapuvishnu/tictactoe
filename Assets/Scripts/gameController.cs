@@ -44,7 +44,7 @@ public class gameController : MonoBehaviour
         else if (init && opponentScore > playerScore )
         {
             show("Computer has the first move.");
-
+            chance = 1;
             //Clear all contents, and make all buttons interactable
             for (int i = 1; i <= 9; i++)
             {
@@ -86,14 +86,13 @@ public class gameController : MonoBehaviour
                 }
             }
         }
-        
+
         //Checking for win condition
         if (check_win() == 1)
         {
             show("Player has won.");
-            int score = int.Parse(GameObject.Find("playerScore").GetComponentInChildren<Text>().text);
-            score += 1;
-            GameObject.Find("playerScore").GetComponentInChildren<Text>().text = score.ToString();
+            playerScore += 1;
+            GameObject.Find("playerScore").GetComponentInChildren<Text>().text = playerScore.ToString();
 
             StartCoroutine("wait");
             chance = 1;
@@ -102,9 +101,9 @@ public class gameController : MonoBehaviour
         else if (check_win() == 2)
         {
             show("Opponent has won.");
-            int score = int.Parse(GameObject.Find("opponentScore").GetComponentInChildren<Text>().text);
-            score += 1;
-            GameObject.Find("opponentScore").GetComponentInChildren<Text>().text = score.ToString();
+            
+            opponentScore += 1;
+            GameObject.Find("opponentScore").GetComponentInChildren<Text>().text = opponentScore.ToString();
 
             StartCoroutine("wait");
             chance = 2;
